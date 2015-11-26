@@ -36,14 +36,17 @@ public class ServerConnection {
         Client client = Client.create();
 
         WebResource webResource = client.resource(getHostAddress() + ":" + getPort() + "/api/" + path);
-        ClientResponse response = webResource.type("application/json").getClientResponse.class);
+        ClientResponse response = webResource.type("application/json").get(ClientResponse.class);
 
 
         String output = response.getEntity(String.class);
         System.out.println(output);
 
-
+        return output;
     }
+
+
+
 
 
     public void post(String json, String path) {
