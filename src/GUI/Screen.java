@@ -67,6 +67,37 @@ public class Screen extends JFrame {
 
         cardlayout = (CardLayout) getContentPane().getLayout();
     }
+    public void show(String panel) {
+        cardlayout.show(contentPane, panel);
+    }
+
+    public CreateGame getCreategame() {
+        return creategame;
+    }
+
+    public DeleteGame getDeletegame() {
+        return deletegame;
+    }
+
+    public LoadHighScore getLoadhighscore() {
+        return loadhighscore;
+    }
+
+    public ShowResults getShowresults() {
+        return showresults;
+    }
+
+    public JoinGame getJoingame() {
+        return joingame;
+    }
+
+    public Login getLogin() {
+        return login;
+    }
+
+    public GameMenu getGameMenu() {
+        return gamemenu;
+    }
 }
 
 
