@@ -6,12 +6,12 @@ import java.awt.event.ActionListener;
 import GUI.Screen;
 
 
-public class SnakeApp {
+public class Snake {
 
     private Screen screen;
 
 
-    public SnakeApp() {
+    public Snake() {
         screen = new Screen();
         screen.setVisible(true);
     }
