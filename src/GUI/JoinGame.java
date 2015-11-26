@@ -23,9 +23,9 @@ public class JoinGame extends JPanel {
         setLayout(null);
         setBounds(100, 100, 550, 400);
 
-        lblStartGame = new JLabel("Start Game");
+        lblStartGame = new JLabel("Join Game");
         lblStartGame.setFont(new Font("Phosphate", Font.PLAIN, 52));
-        lblStartGame.setBounds(136, 116, 277, 45);
+        lblStartGame.setBounds(150, 116, 249, 45);
         add(lblStartGame);
 
         lblJoinGameID = new JLabel("Please enter the an ID of a game you want to join:");
