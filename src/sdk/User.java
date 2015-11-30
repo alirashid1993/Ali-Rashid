@@ -4,7 +4,9 @@ package sdk;
  * Created by BenjaminSelnaes on 10/11/15.
  */
 public class User {
-//
+
+
+    //
     //
     private String username;
     private String password;
@@ -15,5 +17,13 @@ public class User {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
     }
 }

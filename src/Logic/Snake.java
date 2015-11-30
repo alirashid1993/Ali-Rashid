@@ -33,6 +33,8 @@ public class Snake {
                 new ShowResultsActionListener());
         screen.show(Screen.LOGIN);
 
+
+        //back knapper
         screen.getCreategame().actionPerformedBack(
                 new CreateGameActionListenerBack());
         screen.getDeletegame().actionPerformedBack(
@@ -50,6 +52,8 @@ public class Snake {
         public void actionPerformed(ActionEvent e){
             String actCom = e.getActionCommand();
             if (actCom.equals("Login")) {
+
+
                 screen.show(Screen.GAMEMENU);
             }
         }
