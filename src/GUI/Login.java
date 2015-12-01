@@ -1,6 +1,6 @@
 package GUI;
 
-import java.awt.Font;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -19,6 +19,7 @@ public class Login extends JPanel {
     private JLabel lblPlease;
     private JLabel lblUsername;
     private JLabel lblPassword;
+    private JLabel lblErrorMessage;
 
 
 
@@ -43,7 +44,7 @@ public class Login extends JPanel {
 
         lblPlease = new JLabel("Please enter Username and Password:");
         lblPlease.setFont(new Font("Impact", Font.PLAIN, 13));
-        lblPlease.setBounds(166, 180, 218, 16);
+        lblPlease.setBounds(170, 180, 218, 16);
         add(lblPlease);
 
         lblUsername = new JLabel("Username:");
@@ -57,7 +58,7 @@ public class Login extends JPanel {
         add(lblPassword);
 
         username = new JTextField();
-        username.setBounds(233, 208, 153, 28);
+        username.setBounds(231, 208, 153, 28);
         add(username);
         username.setColumns(10);
 
@@ -67,13 +68,19 @@ public class Login extends JPanel {
             }
         });
         btnLogin.setFont(new Font("Impact", Font.PLAIN, 22));
-        btnLogin.setBounds(166, 274, 218, 41);
+        btnLogin.setBounds(166, 292, 218, 41);
         add(btnLogin);
 
         JLabel lblWelcome_1 = new JLabel("Login");
         lblWelcome_1.setFont(new Font("Phosphate", Font.PLAIN, 52));
         lblWelcome_1.setBounds(201, 73, 152, 45);
         add(lblWelcome_1);
+
+        lblErrorMessage = new JLabel();
+        lblErrorMessage.setForeground(Color.RED);
+        lblErrorMessage.setFont(new Font("Impact", Font.BOLD, 13));
+        lblErrorMessage.setBounds(170, 276, 247, 16);
+        add(lblErrorMessage);
 
     }
 
@@ -107,5 +114,12 @@ public class Login extends JPanel {
 
     public void actionPerformedLogin(ActionListener l) {
         btnLogin.addActionListener(l);
+    }
+    public JLabel getErrorMessage() {
+        return lblErrorMessage;
+    }
+
+    public void setErrorMessage(String errorMessage) {
+        this.lblErrorMessage.setText(errorMessage);
     }
 }

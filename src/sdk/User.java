@@ -1,8 +1,5 @@
-package sdk;
+package SDK;
 
-/**
- * Created by BenjaminSelnaes on 10/11/15.
- */
 public class User {
 
 
@@ -19,11 +16,11 @@ public class User {
         this.username = username;
     }
 
-    public String getUsername() {
-        return username;
+    public void getUsername(String username) {
+        this.username = username;
     }
 
-    public String getPassword() {
-        return password;
+    public void getPassword(String password) {
+        this.password = password;
     }
 }

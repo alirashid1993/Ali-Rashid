@@ -1,4 +1,4 @@
-package sdk;
+package SDK;
 
 import com.google.gson.Gson;
 

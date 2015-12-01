@@ -1,4 +1,4 @@
-package sdk;
+package SDK;
 
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
@@ -45,10 +45,6 @@ public class ServerConnection {
         return output;
     }
 
-
-
-
-
     public void post(String json, String path) {
 
         Client client = Client.create();
@@ -66,3 +62,4 @@ public class ServerConnection {
 
     }
 }
+
