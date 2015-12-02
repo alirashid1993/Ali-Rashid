@@ -1,5 +1,7 @@
 package SDK;
 
+import java.util.ArrayList;
+
 public class User {
 
 
@@ -7,6 +9,7 @@ public class User {
     //
     private String username;
     private String password;
+    private int ID;
 
     public void setPassword(String password) {
         this.password = password;
@@ -22,5 +25,9 @@ public class User {
 
     public void getPassword(String password) {
         this.password = password;
+    }
+
+    public void setID(int ID){
+        this.ID = ID;
     }
 }

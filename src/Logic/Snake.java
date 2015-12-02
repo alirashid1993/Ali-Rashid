@@ -4,14 +4,25 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import GUI.Screen;
+import SDK.API;
+import SDK.User;
+import org.codehaus.jettison.json.JSONException;
+import org.json.simple.parser.ParseException;
+
+import javax.swing.*;
 
 public class Snake {
 
     private Screen screen;
+    private User currentUser;
+    private API api;
 
     public Snake() {
         screen = new Screen();
         screen.setVisible(true);
+
+        currentUser = new User();
+        api = new API();
     }
 
     public void run() {
@@ -47,8 +58,8 @@ public class Snake {
 
     }
 
-    private boolean isEmpty(String text) {
-        // Trim for at vÔøΩre sikker pÔøΩ at der ikke er tomme spaces
+        private boolean isEmpty(String text) {
+        // Trim for at vaere sikker paa at der ikke er tomme spaces
         text = text.trim();
 
         if (text.equals("") || text.length() < 1 || text == null) {
@@ -61,7 +72,20 @@ public class Snake {
 
     private class LoginActionListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            String actCom = e.getActionCommand();
+
+            currentUser.setUsername(screen.getLogin().getUsername().getText());
+            currentUser.setPassword(screen.getLogin().getPassword().getText());
+
+
+            String message = null;
+
+            message = api.login(currentUser);
+
+                screen.getCreategame().setUsers(api.getUsers());
+                screen.show(screen.GAMEMENU);
+
+
+            /*String actCom = e.getActionCommand();
             if (actCom.equals("Login")) {
 
                 String loginField = screen.getLogin().getUsername().getText();
@@ -80,6 +104,7 @@ public class Snake {
                     screen.show(Screen.LOGIN);
                 }
             }
+        }*/
         }
     }
 
