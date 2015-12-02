@@ -17,13 +17,7 @@ public class User {
         this.username = username;
     }
 
-    public void getUsername(String username) {
-        this.username = username;
-    }
 
-    public void getPassword(String password) {
-        this.password = password;
-    }
 
     public void setID(int ID){
         this.ID = ID;

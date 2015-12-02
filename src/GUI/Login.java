@@ -101,20 +101,18 @@ public class Login extends JPanel {
         this.username = username;
     }
 
-
     public JPasswordField getPassword() {
         return password;
     }
-
 
     public void setPassword(JPasswordField password) {
         this.password = password;
     }
 
-
     public void actionPerformedLogin(ActionListener l) {
         btnLogin.addActionListener(l);
     }
+
     public JLabel getErrorMessage() {
         return lblErrorMessage;
     }
