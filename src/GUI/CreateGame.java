@@ -70,6 +70,5 @@ public class CreateGame extends JPanel {
     }
     public void setUsers(ArrayList<User> users) {
 
-
     }
 }
