@@ -39,7 +39,7 @@ public class API {
         return message;
     }
 
-    public ArrayList<User> getUsers() {
+    public ArrayList<User> getUsers() { //burde ikke bruge get-metode
 
         String jou = servCon.get("users");
 
