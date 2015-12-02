@@ -84,27 +84,6 @@ public class Snake {
                 screen.getCreategame().setUsers(api.getUsers());
                 screen.show(screen.GAMEMENU);
 
-
-            /*String actCom = e.getActionCommand();
-            if (actCom.equals("Login")) {
-
-                String loginField = screen.getLogin().getUsername().getText();
-                String passwordField = screen.getLogin().getPassword().getText();
-
-                screen.getLogin().getUsername().setText("");
-                screen.getLogin().getPassword().setText("");
-
-                if (isEmpty(loginField) || isEmpty(passwordField)) {
-                    screen.getLogin().setErrorMessage(
-                            "Please type a Username and Password!");
-              //  } else {
-              //      screen.getLogin().setErrorMessage("Wrong username or password!");
-
-               //     for (User user :
-                    screen.show(Screen.LOGIN);
-                }
-            }
-        }*/
         }
     }
 
