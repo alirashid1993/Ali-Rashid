@@ -22,8 +22,6 @@ public class CreateGame extends JPanel {
     private JComboBox comboBox;
 
 
-
-
     /**
      * Create the panel.
      */
@@ -76,36 +74,41 @@ public class CreateGame extends JPanel {
         add(textFieldMovements);
         textFieldMovements.setColumns(10);
 
-        btnCreateGame = new JButton("Create Game");
-        btnCreateGame.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-            }
-        });
-        btnCreateGame.setFont(new Font("Impact", Font.PLAIN, 13));
-        btnCreateGame.setBounds(166, 191, 117, 29);
-
-
         lblwasd = new JLabel("");
         Image src = new ImageIcon(this.getClass().getResource("wasd.png")).getImage();
-        lblwasd.setIcon( new ImageIcon(src));
-        lblwasd.setBounds(322,105,300,300);
+        lblwasd.setIcon(new ImageIcon(src));
+        lblwasd.setBounds(322, 105, 300, 300);
         add(lblwasd);
 
     }
+
     public void actionPerformedCreateGame(ActionListener l) {
         btnCreateGame.addActionListener(l);
     }
+
     public void actionPerformedBack(ActionListener back) {
         btnBack.addActionListener(back);
     }
-    public void setUsers(ArrayList<User> users) {
 
+    public void setUsers(ArrayList<User> users) {
+        comboBox.removeAllItems();
+        for (User opponent : users) {
+            comboBox.addItem(opponent.getUsername());
+        }
     }
-    public JTextField getTxtGameName() {
-        return txtGameName;
+
+    public String getTxtGameName() {
+        return txtGameName.getText();
     }
+
     public String getUsernameFromCombo() {
         return (String) comboBox.getSelectedItem();
     }
 
+    public String getTextFieldMovements() {
+        return textFieldMovements.getText();
+    }
 }
+
+
+

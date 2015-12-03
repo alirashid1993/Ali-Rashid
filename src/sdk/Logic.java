@@ -36,7 +36,7 @@ public class Logic {
     public static void startGame(int gameId){
 
     }
-    public static void createGame(String name, int status){
+    public static void createGame(String name, String status){
 
         ServerConnection serverConnection = new ServerConnection();
 

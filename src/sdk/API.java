@@ -1,8 +1,6 @@
 package SDK;
 
-import GUI.CreateGame;
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 import com.oracle.javafx.jmx.json.JSONException;
 import org.json.simple.JSONObject;
@@ -31,7 +29,7 @@ public class API {
             JSONObject JO = (JSONObject) object;
 
             if (JO.get("userid") != null)
-                user.setID((int) (long) JO.get("userid"));
+                user.setId((int) (long) JO.get("userid"));
 
             return jLogin;
         } catch (ParseException | JSONException e) {

@@ -2,14 +2,13 @@ package Logic;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import GUI.Screen;
 import SDK.API;
 import SDK.Game;
 import SDK.Gamer;
 import SDK.User;
-import org.codehaus.jettison.json.JSONException;
-import org.json.simple.parser.ParseException;
 
 import javax.swing.*;
 
@@ -18,9 +17,7 @@ public class Snake {
     private Screen screen;
     private User currentUser;
     private API api;
-    private Game game;
-    private Gamer host;
-    private Gamer opponent;
+    private ArrayList<User>users;
 
     public Snake() {
         screen = new Screen();
@@ -28,9 +25,7 @@ public class Snake {
 
         currentUser = new User();
         api = new API();
-        game = new Game();
-        host = new Gamer();
-        opponent = new Gamer();
+
     }
 
     public void run() {
@@ -88,8 +83,17 @@ public class Snake {
             String jLogin = null;
 
             jLogin = api.login(currentUser);
+            users = api.getUsers();
 
-                screen.getCreategame().setUsers(api.getUsers());
+            for (User usr : users){
+
+                if (usr.getUsername().equals(currentUser.getUsername())){
+
+                    System.out.println(usr.getId());
+                    currentUser = usr;
+                }
+            }
+                screen.getCreategame().setUsers(users);
                 screen.show(screen.GAMEMENU);
 
         }
@@ -98,24 +102,27 @@ public class Snake {
             public void actionPerformed(ActionEvent e) {
                 String actCom = e.getActionCommand();
                 if (actCom.equals("Create Game")) {
-                    game.setHost(host);
-                    game.setOpponent(opponent);
-                    game.setMapsize(750);
+                    Game newGame = new Game();
+                    newGame.setMapSize(750);
+                    Gamer host = new Gamer();
+                    Gamer opponent = new Gamer();
 
-                    host.setID(currentUser.getID());
-                    game.setName(screen.getCreategame().getTxtGameName());
+                    host.setId(currentUser.getId());
+                    newGame.setName(screen.getCreategame().getTxtGameName());
 
                     for (User user : api.getUsers()) {
 
-                        if ( boolean equals = user.getUsername().equals(screen.getCreategame().getUsernameFromCombo());
-                        opponent.setID(user.getID());
-                            System.out.println(user.getID());
+                        System.out.println(user.getId());
+                        if (user.getUsername().equals(screen.getCreategame().getUsernameFromCombo()));
+                            opponent.setId(user.getId());
+                            System.out.println(user.getId());
                     }
+                    host.setControls(screen.getCreategame().getTextFieldMovements());
+                    newGame.setHost(host);
+                    newGame.setOpponent(opponent);
+                    String jCreate = api.jCreate(newGame);
+                    JOptionPane.showMessageDialog(screen, jCreate);
 
-
-
-
-                    screen.show(Screen.CREATEGAME);
                 }
             }
         }
