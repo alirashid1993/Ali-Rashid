@@ -15,6 +15,7 @@ public class Game {
     private String opponentControls;
     private int status;
     private Date created;
+    private int mapsize;
 
     public void setGameId(int gameId) {
         this.gameId = gameId;
@@ -56,8 +57,10 @@ public class Game {
         this.status = status;
     }
 
-    public void setCreated(Date created) {
-        this.created = created;
+    public void setCreated(Date created) { this.created = created; }
+
+    public void setMapsize(int mapsize) { this.mapsize = mapsize; }
+
     }
 
 

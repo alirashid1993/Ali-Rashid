@@ -17,9 +17,12 @@ public class User {
         this.username = username;
     }
 
+    public int getID(int ID) { this.ID = ID;
+        return ID;
+    }
 
-
-    public void setID(int ID){
+    public void setID(int ID) {
         this.ID = ID;
     }
 }
+

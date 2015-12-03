@@ -5,6 +5,8 @@ import java.awt.event.ActionListener;
 
 import GUI.Screen;
 import SDK.API;
+import SDK.Game;
+import SDK.Gamer;
 import SDK.User;
 import org.codehaus.jettison.json.JSONException;
 import org.json.simple.parser.ParseException;
@@ -16,6 +18,9 @@ public class Snake {
     private Screen screen;
     private User currentUser;
     private API api;
+    private Game game;
+    private Gamer host;
+    private Gamer opponent;
 
     public Snake() {
         screen = new Screen();
@@ -23,6 +28,9 @@ public class Snake {
 
         currentUser = new User();
         api = new API();
+        game = new Game();
+        host = new Gamer();
+        opponent = new Gamer();
     }
 
     public void run() {
@@ -90,6 +98,12 @@ public class Snake {
             public void actionPerformed(ActionEvent e) {
                 String actCom = e.getActionCommand();
                 if (actCom.equals("Create Game")) {
+                    game.setHost(host);
+                    game.setOpponent(opponent);
+                    game.setMapsize(750);
+
+
+
 
                     screen.show(Screen.CREATEGAME);
                 }
