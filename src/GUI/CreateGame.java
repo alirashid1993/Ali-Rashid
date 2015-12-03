@@ -14,8 +14,13 @@ public class CreateGame extends JPanel {
     private JTextField textFieldMovements;
     private JLabel lblCreategame;
     private JLabel lblEnterGameName;
+    private JLabel lblPleaseChooseAn;
+    private JLabel lblPleaseEnterSnake;
+    private JLabel lblwasd;
     private JButton btnCreateGame;
     private JButton btnBack;
+    private JComboBox comboBox;
+
 
 
     /**
@@ -51,16 +56,16 @@ public class CreateGame extends JPanel {
         btnBack.setBounds(48, 309, 192, 38);
         add(btnBack);
 
-        JComboBox comboBox = new JComboBox();
+        comboBox = new JComboBox();
         comboBox.setBounds(297, 143, 192, 38);
         add(comboBox);
 
-        JLabel lblPleaseChooseAn = new JLabel("Please choose an opponent:");
+        lblPleaseChooseAn = new JLabel("Please choose an opponent:");
         lblPleaseChooseAn.setFont(new Font("Impact", Font.PLAIN, 13));
         lblPleaseChooseAn.setBounds(311, 124, 159, 16);
         add(lblPleaseChooseAn);
 
-        JLabel lblPleaseEnterSnake = new JLabel("Please enter snake movements:");
+        lblPleaseEnterSnake = new JLabel("Please enter snake movements:");
         lblPleaseEnterSnake.setFont(new Font("Impact", Font.PLAIN, 13));
         lblPleaseEnterSnake.setBounds(58, 184, 174, 16);
         add(lblPleaseEnterSnake);
@@ -79,11 +84,11 @@ public class CreateGame extends JPanel {
         btnCreateGame.setBounds(166, 191, 117, 29);
 
 
-        JLabel wasd = new JLabel("");
+        lblwasd = new JLabel("");
         Image src = new ImageIcon(this.getClass().getResource("wasd.png")).getImage();
-        wasd.setIcon( new ImageIcon(src));
-        wasd.setBounds(0,0,500,500);
-        add(wasd);
+        lblwasd.setIcon( new ImageIcon(src));
+        lblwasd.setBounds(0,0,300,300);
+        add(lblwasd);
 
     }
     public void actionPerformedCreateGame(ActionListener l) {

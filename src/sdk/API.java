@@ -1,5 +1,6 @@
 package SDK;
 
+import GUI.CreateGame;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
@@ -39,14 +40,24 @@ public class API {
         return message;
     }
 
-    public ArrayList<User> getUsers() { //burde ikke bruge get-metode
+    public ArrayList<User> getUsers() {
 
-        String jou = servCon.get("users");
+        String jou = servCon.get("users"); //jou (JSONUser
 
-        return new Gson().fromJson(jou, new TypeToken<ArrayList<User>>(){}.getType());
+        ArrayList<User> users = new Gson().fromJson(jou, new TypeToken<ArrayList<User>>() {
+        }.getType());
+
+        return users;
     }
 
+    public String createGame(Game game) {
+
+        String jCreate = servCon.post(new Gson().toJson(game), "games/");
+
+        return jCreate;
+    }
 }
+
 
 
 
