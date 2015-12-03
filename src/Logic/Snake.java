@@ -92,7 +92,6 @@ public class Snake {
                 screen.getCreategame().setUsers(api.getUsers());
                 screen.show(screen.GAMEMENU);
 
-
         }
     }
         private class CreateGameActionListener implements ActionListener {
@@ -102,6 +101,16 @@ public class Snake {
                     game.setHost(host);
                     game.setOpponent(opponent);
                     game.setMapsize(750);
+
+                    host.setID(currentUser.getID());
+                    game.setName(screen.getCreategame().getTxtGameName());
+
+                    for (User user : api.getUsers()) {
+
+                        if ( boolean equals = user.getUsername().equals(screen.getCreategame().getUsernameFromCombo());
+                        opponent.setID(user.getID());
+                            System.out.println(user.getID());
+                    }
 
 
 

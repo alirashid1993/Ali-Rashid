@@ -23,6 +23,7 @@ public class CreateGame extends JPanel {
 
 
 
+
     /**
      * Create the panel.
      */
@@ -99,6 +100,12 @@ public class CreateGame extends JPanel {
     }
     public void setUsers(ArrayList<User> users) {
 
+    }
+    public JTextField getTxtGameName() {
+        return txtGameName;
+    }
+    public String getUsernameFromCombo() {
+        return (String) comboBox.getSelectedItem();
     }
 
 }

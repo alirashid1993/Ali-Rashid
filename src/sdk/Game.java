@@ -1,5 +1,6 @@
 package SDK;
 
+import javax.swing.*;
 import java.util.Date;
 
 public class Game {
@@ -57,12 +58,14 @@ public class Game {
         this.status = status;
     }
 
-    public void setCreated(Date created) { this.created = created; }
-
-    public void setMapsize(int mapsize) { this.mapsize = mapsize; }
-
+    public void setCreated(Date created) {
+        this.created = created;
     }
 
+    public void setMapsize(int mapsize) {
+        this.mapsize = mapsize;
+    }
 
-
+    public void setName(JTextField txtGameName) {
+    }
 }
