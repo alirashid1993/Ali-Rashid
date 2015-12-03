@@ -24,20 +24,20 @@ public class API {
 
         String message = "";
 
-        String data = servCon.post(new Gson().toJson(user), "login");
+        String jLogin = servCon.post(new Gson().toJson(user), "login");
         JSONParser parser = new JSONParser();
         try {
-            Object object = parser.parse(data);
+            Object object = parser.parse(jLogin);
             JSONObject JO = (JSONObject) object;
 
             if (JO.get("userid") != null)
                 user.setID((int) (long) JO.get("userid"));
 
-            return message;
+            return jLogin;
         } catch (ParseException | JSONException e) {
-            message = "No input was recieved";
+            jLogin = "No input was recieved";
         }
-        return message;
+        return jLogin;
     }
 
     public ArrayList<User> getUsers() {
@@ -50,9 +50,19 @@ public class API {
         return users;
     }
 
-    public String createGame(Game game) {
+    public String jCreate (Game game) {
 
         String jCreate = servCon.post(new Gson().toJson(game), "games/");
+        JSONParser parser = new JSONParser();
+        try{
+            Object object = parser.parse(jCreate);
+            JSONObject JO = (JSONObject) object;
+
+            jCreate = (String) JO.get("games");
+
+        }catch (ParseException e){
+            e.printStackTrace();
+        }
 
         return jCreate;
     }

@@ -16,6 +16,7 @@ public class Login extends JPanel {
     private JPasswordField password;
     private JButton btnLogin;
     private JLabel lblWelcome;
+    private JLabel lblWelcome_1;
     private JLabel lblPlease;
     private JLabel lblUsername;
     private JLabel lblPassword;
@@ -71,7 +72,7 @@ public class Login extends JPanel {
         btnLogin.setBounds(166, 292, 218, 41);
         add(btnLogin);
 
-        JLabel lblWelcome_1 = new JLabel("Login");
+        lblWelcome_1 = new JLabel("Login");
         lblWelcome_1.setFont(new Font("Phosphate", Font.PLAIN, 52));
         lblWelcome_1.setBounds(201, 73, 152, 45);
         add(lblWelcome_1);

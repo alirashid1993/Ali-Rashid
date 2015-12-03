@@ -62,7 +62,7 @@ public class CreateGame extends JPanel {
 
         lblPleaseChooseAn = new JLabel("Please choose an opponent:");
         lblPleaseChooseAn.setFont(new Font("Impact", Font.PLAIN, 13));
-        lblPleaseChooseAn.setBounds(311, 124, 159, 16);
+        lblPleaseChooseAn.setBounds(317, 124, 159, 16);
         add(lblPleaseChooseAn);
 
         lblPleaseEnterSnake = new JLabel("Please enter snake movements:");
@@ -87,7 +87,7 @@ public class CreateGame extends JPanel {
         lblwasd = new JLabel("");
         Image src = new ImageIcon(this.getClass().getResource("wasd.png")).getImage();
         lblwasd.setIcon( new ImageIcon(src));
-        lblwasd.setBounds(0,0,300,300);
+        lblwasd.setBounds(322,105,300,300);
         add(lblwasd);
 
     }

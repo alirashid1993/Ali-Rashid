@@ -77,16 +77,15 @@ public class Snake {
             currentUser.setPassword(screen.getLogin().getPassword().getText());
 
 
-            String message = null;
+            String jLogin = null;
 
-            message = api.login(currentUser);
+            jLogin = api.login(currentUser);
 
                 screen.getCreategame().setUsers(api.getUsers());
                 screen.show(screen.GAMEMENU);
 
         }
     }
-
         private class CreateGameActionListener implements ActionListener {
             public void actionPerformed(ActionEvent e) {
                 String actCom = e.getActionCommand();
