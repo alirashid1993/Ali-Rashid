@@ -75,43 +75,49 @@ public class Snake {
 
     private class LoginActionListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            /*String loginField = screen.getLogin().getUsername().getText();
-            String passwordField = screen.getLogin().getPassword().getText();
-            screen.getLogin().getUsername().setText("");
-            screen.getLogin().getPassword().setText("");
+            String actCom = e.getActionCommand();
+            if (actCom.equals("Login")) {
 
-            // Tjek om user/pass er udfyldt
-            if (isEmpty(loginField) || isEmpty(passwordField)) {
-                // Error besked i vindue
-                screen.getLogin().setErrorMessage(
-                        "Please type a user-ID and password!");
-            } else {
-                screen.getLogin().setErrorMessage("Wrong username or password!");
-                // Tjek login*/
-                currentUser.setUsername(screen.getLogin().getUsername().getText());
-                currentUser.setPassword(screen.getLogin().getPassword().getText());
+                String loginField = screen.getLogin().getUsername().getText();
+                String passwordField = screen.getLogin().getPassword().getText();
 
+                //rydder login felter
+                screen.getLogin().getUsername().setText("");
+                screen.getLogin().getPassword().setText("");
 
-                String jLogin = null;
+                // Tjek om user/pass er udfyldt
+                if (isEmpty(loginField) || isEmpty(passwordField)) {
+                    // Error besked i vindue
+                    screen.getLogin().setErrorMessage(
+                            "Please type a user-ID and password!");
+                } else {
+                    screen.getLogin().setErrorMessage("Wrong username or password!");
+                    // Tjek login*/
+                    currentUser.setUsername(screen.getLogin().getUsername().getText());
+                    currentUser.setPassword(screen.getLogin().getPassword().getText());
 
-                jLogin = api.login(currentUser);
-                users = api.getUsers();
+                    String jLogin = null;
 
+                    jLogin = api.login(currentUser);
+                    users = api.getUsers();
 
-                for (User user : users) {
+                    for (User user : users) {
 
-                    if (user.getUsername().equals(currentUser.getUsername())) {
+                        if (user.getUsername().equals(currentUser.getUsername())) {
 
-                        System.out.println(user.getId());
-                        currentUser = user;
+                            System.out.println(user.getId());
+                            currentUser = user;
+                        }
                     }
-                }
-                screen.getCreategame().setUsers(users);
-                screen.show(screen.GAMEMENU);
+                    screen.getCreategame().setUsers(users);
+                    screen.show(screen.GAMEMENU);
+                    JOptionPane.showMessageDialog(screen, "W3LC0M3 T0 SN4K3");
 
+
+                }
             }
         }
-
+    }
         private class CreateGameActionListener implements ActionListener {
             public void actionPerformed(ActionEvent e) {
                 String actCom = e.getActionCommand();
@@ -132,10 +138,11 @@ public class Snake {
                             System.out.println(user.getId());
                     }
                     host.setControls(screen.getCreategame().getTextFieldMovements());
+                    //ERRORHANDLING fra tidligere problem, hvor host og opponet ikke kunne sættes
                     newGame.setHost(host);
                     newGame.setOpponent(opponent);
-                    String jCreate = api.jCreate(newGame);
-                    JOptionPane.showMessageDialog(screen, jCreate);
+
+                    JOptionPane.showMessageDialog(screen, "Y0UR G4M3 H45 B33N CR34T3D!");
 
                 }
             }
@@ -172,7 +179,6 @@ public class Snake {
             public void actionPerformed(ActionEvent arg0) {
                 String actCom = arg0.getActionCommand();
                 if (actCom.equals("Join Game")) {
-
 
                     screen.show(Screen.JOINGAME);
                 }
