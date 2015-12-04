@@ -83,29 +83,37 @@ public class CreateGame extends JPanel {
     }
 
     public void actionPerformedCreateGame(ActionListener l) {
+
         btnCreateGame.addActionListener(l);
     }
 
     public void actionPerformedBack(ActionListener back) {
+
         btnBack.addActionListener(back);
     }
 
     public void setUsers(ArrayList<User> users) {
+
         comboBox.removeAllItems();
+
         for (User opponent : users) {
+
             comboBox.addItem(opponent.getUsername());
         }
     }
 
     public String getTxtGameName() {
+
         return txtGameName.getText();
     }
 
     public String getUsernameFromCombo() {
+
         return (String) comboBox.getSelectedItem();
     }
 
     public String getTextFieldMovements() {
+
         return textFieldMovements.getText();
     }
 }
