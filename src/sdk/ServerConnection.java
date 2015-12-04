@@ -49,9 +49,9 @@ public class ServerConnection {
         System.out.println(getHostAddress() + ":" + getPort() + "/api/" + path);
         WebResource webResource = client.resource(getHostAddress() + ":" + getPort() + "/api/" + path);
         ClientResponse response = webResource.type("application/json").post(ClientResponse.class, json);
-        String output = response.getEntity(String.class);
+        return response.getEntity(String.class);
 
-        return output;
     }
+
 }
 

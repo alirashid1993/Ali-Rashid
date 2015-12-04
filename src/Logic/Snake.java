@@ -75,29 +75,43 @@ public class Snake {
 
     private class LoginActionListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
+            /*String loginField = screen.getLogin().getUsername().getText();
+            String passwordField = screen.getLogin().getPassword().getText();
+            screen.getLogin().getUsername().setText("");
+            screen.getLogin().getPassword().setText("");
 
-            currentUser.setUsername(screen.getLogin().getUsername().getText());
-            currentUser.setPassword(screen.getLogin().getPassword().getText());
+            // Tjek om user/pass er udfyldt
+            if (isEmpty(loginField) || isEmpty(passwordField)) {
+                // Error besked i vindue
+                screen.getLogin().setErrorMessage(
+                        "Please type a user-ID and password!");
+            } else {
+                screen.getLogin().setErrorMessage("Wrong username or password!");
+                // Tjek login*/
+                currentUser.setUsername(screen.getLogin().getUsername().getText());
+                currentUser.setPassword(screen.getLogin().getPassword().getText());
 
 
-            String jLogin = null;
+                String jLogin = null;
 
-            jLogin = api.login(currentUser);
-            users = api.getUsers();
+                jLogin = api.login(currentUser);
+                users = api.getUsers();
 
-            for (User usr : users){
 
-                if (usr.getUsername().equals(currentUser.getUsername())){
+                for (User user : users) {
 
-                    System.out.println(usr.getId());
-                    currentUser = usr;
+                    if (user.getUsername().equals(currentUser.getUsername())) {
+
+                        System.out.println(user.getId());
+                        currentUser = user;
+                    }
                 }
-            }
                 screen.getCreategame().setUsers(users);
                 screen.show(screen.GAMEMENU);
 
+            }
         }
-    }
+
         private class CreateGameActionListener implements ActionListener {
             public void actionPerformed(ActionEvent e) {
                 String actCom = e.getActionCommand();
@@ -158,6 +172,8 @@ public class Snake {
             public void actionPerformed(ActionEvent arg0) {
                 String actCom = arg0.getActionCommand();
                 if (actCom.equals("Join Game")) {
+
+
                     screen.show(Screen.JOINGAME);
                 }
             }
