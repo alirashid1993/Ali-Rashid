@@ -22,23 +22,23 @@ public class Game {
     }
 
     public Date getCreated() {
+
         return created;
     }
 
     public void setCreated(Date created) {
+
         this.created = created;
     }
 
     public int getMapSize() {
+
         return mapSize;
     }
 
     public void setMapSize(int mapSize) {
-        this.mapSize = mapSize;
-    }
 
-    public String getName() {
-        return name;
+        this.mapSize = mapSize;
     }
 
     public void setName(String name) {
@@ -47,42 +47,55 @@ public class Game {
 
     //Creating get/set method for all the variables, so they can be used by other classes
     public int getGameId(){
+
         return gameId;
     }
 
     public void setGameId(int gameId){
+
         this.gameId = gameId;
     }
 
     public Gamer getHost(){
+
         return host;
     }
 
     public void setHost(Gamer host){
+
         this.host = host;
     }
 
     public Gamer getOpponent(){
+
         return opponent;
     }
 
     public void setOpponent(Gamer opponent){
+
         this.opponent = opponent;
     }
 
     public String getStatus(){
+
         return status;
     }
 
     public void setStatus(String status){
+
         this.status = status;
     }
 
     public Gamer getWinner() {
+
         return winner;
     }
 
     public void setWinner(Gamer winner) {
+
         this.winner = winner;
+    }
+
+    public void getName(String txtGameName) {
     }
 } //end of class

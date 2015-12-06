@@ -80,22 +80,27 @@ public class Screen extends JFrame {
     }
 
     public LoadHighScore getLoadhighscore() {
+
         return loadhighscore;
     }
 
     public ShowResults getShowresults() {
+
         return showresults;
     }
 
     public JoinGame getJoingame() {
+
         return joingame;
     }
 
     public Login getLogin() {
+
         return login;
     }
 
     public GameMenu getGameMenu() {
+
         return gamemenu;
     }
 }

@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import GUI.JoinGame;
 import GUI.Screen;
 import SDK.API;
 import SDK.Game;
@@ -17,7 +18,10 @@ public class Snake {
     private Screen screen;
     private User currentUser;
     private API api;
-    private ArrayList<User>users;
+    private ArrayList<User> users;
+    private ArrayList<Game> games;
+    private Game newGame;
+
 
     public Snake() {
         screen = new Screen();
@@ -25,6 +29,7 @@ public class Snake {
 
         currentUser = new User();
         api = new API();
+        newGame = new Game();
 
     }
 
@@ -48,8 +53,7 @@ public class Snake {
 
 
         //back knapper
-        screen.getCreategame().actionPerformedBack(
-                new CreateGameActionListenerBack());
+
         screen.getDeletegame().actionPerformedBack(
                 new DeleteGameActionListenerBack());
         screen.getJoingame().actionPerformedBack(
@@ -61,8 +65,8 @@ public class Snake {
 
     }
 
-        private boolean isEmpty(String text) {
-        // Trim for at vaere sikker paa at der ikke er tomme spaces
+    private boolean isEmpty(String text) {
+        //Metode der tjekker tomme spaces i den tilhørende panel
         text = text.trim();
 
         if (text.equals("") || text.length() < 1 || text == null) {
@@ -72,6 +76,7 @@ public class Snake {
         }
 
     }
+
 
     private class LoginActionListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
@@ -92,7 +97,9 @@ public class Snake {
                             "Please type a user-ID and password!");
                 } else {
                     screen.getLogin().setErrorMessage("Wrong username or password!");
-                    // Tjek login*/
+                    // Tjek login
+
+
                     currentUser.setUsername(screen.getLogin().getUsername().getText());
                     currentUser.setPassword(screen.getLogin().getPassword().getText());
 
@@ -111,42 +118,45 @@ public class Snake {
                     }
                     screen.getCreategame().setUsers(users);
                     screen.show(screen.GAMEMENU);
-                    JOptionPane.showMessageDialog(screen, "W3LC0M3 T0 SN4K3");
+                    JOptionPane.showMessageDialog(screen, "Welcome to Snake");
 
 
                 }
             }
         }
     }
-        private class CreateGameActionListener implements ActionListener {
-            public void actionPerformed(ActionEvent e) {
-                String actCom = e.getActionCommand();
-                if (actCom.equals("Create Game")) {
-                    Game newGame = new Game();
-                    newGame.setMapSize(750);
-                    Gamer host = new Gamer();
-                    Gamer opponent = new Gamer();
 
-                    host.setId(currentUser.getId());
-                    newGame.setName(screen.getCreategame().getTxtGameName());
 
-                    for (User user : api.getUsers()) {
+    private class CreateGameActionListener implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            String actCom = e.getActionCommand();
+            if (actCom.equals("Login")) {
+                Gamer host = new Gamer();
+                Gamer opponent = new Gamer();
+                newGame.setMapSize(750);
 
-                        System.out.println(user.getId());
-                        if (user.getUsername().equals(screen.getCreategame().getUsernameFromCombo()));
-                            opponent.setId(user.getId());
-                            System.out.println(user.getId());
-                    }
-                    host.setControls(screen.getCreategame().getTextFieldMovements());
-                    //ERRORHANDLING fra tidligere problem, hvor host og opponet ikke kunne sættes
-                    newGame.setHost(host);
-                    newGame.setOpponent(opponent);
+                host.setId(currentUser.getId());
+                newGame.setName(screen.getCreategame().getTxtGameName());
 
-                    JOptionPane.showMessageDialog(screen, "Y0UR G4M3 H45 B33N CR34T3D!");
+                for (User user : api.getUsers()) {
 
+                    System.out.println(user.getId());
+                    if (user.getUsername().equals(screen.getCreategame().getUsernameFromCombo())) ;
+                    opponent.setId(user.getId());
                 }
+                host.setControls(screen.getCreategame().getTextFieldMovements());
+                //ERRORHANDLING fra tidligere problem, hvor host og opponet ikke kunne sættes
+                newGame.setHost(host);
+                newGame.setOpponent(opponent);
+
+                JOptionPane.showMessageDialog(screen, "Your challenge has been sent, wait for the " +
+                        "other player to accept your request and play his turn");
+
+                screen.getCreategame().actionPerformedBack(
+                        new CreateGameActionListenerBack());
             }
         }
+    }
 
         private class DeleteGameActionListener implements ActionListener {
             public void actionPerformed(ActionEvent arg0) {
@@ -159,6 +169,7 @@ public class Snake {
 
         private class GameMenuActionListener implements ActionListener {
             public void actionPerformed(ActionEvent e) {
+
                 String actCom = e.getActionCommand();
                 if (actCom.equals("CREATE GAME")) {
                     screen.show(Screen.CREATEGAME);
@@ -179,11 +190,23 @@ public class Snake {
             public void actionPerformed(ActionEvent arg0) {
                 String actCom = arg0.getActionCommand();
                 if (actCom.equals("Join Game")) {
+                    String controls = screen.getCreategame().getTextFieldMovements();
+                    Gamer opponent = new Gamer();
+                    opponent.setId(currentUser.getId());
+                    opponent.setControls(controls);
 
-                    screen.show(Screen.JOINGAME);
+                    newGame.setOpponent(opponent);
+
+                    for (Game game : games)
+                        if (screen.getJoingame().get
+                    }
+
+
                 }
             }
         }
+
+
 
         private class LoadHighScoreActionListener implements ActionListener {
             public void actionPerformed(ActionEvent arg0) {
@@ -233,5 +256,6 @@ public class Snake {
             }
         }
     }
+
 
 

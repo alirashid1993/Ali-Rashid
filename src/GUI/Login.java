@@ -24,6 +24,7 @@ public class Login extends JPanel {
 
 
 
+
     /**
      * Create the panel.
      */
@@ -87,38 +88,52 @@ public class Login extends JPanel {
 
 
     public JTextField getEnterusername() {
+
         return username;
     }
 
     public void setEnterusername(JTextField enterusername) {
+
         this.username = enterusername;
     }
 
     public JTextField getUsername() {
+
         return username;
     }
 
     public void setUsername(JTextField username) {
+
         this.username = username;
     }
 
     public JPasswordField getPassword() {
+
         return password;
     }
 
     public void setPassword(JPasswordField password) {
+
         this.password = password;
     }
 
     public void actionPerformedLogin(ActionListener l) {
+
         btnLogin.addActionListener(l);
     }
 
     public JLabel getErrorMessage() {
+
         return lblErrorMessage;
     }
 
     public void setErrorMessage(String errorMessage) {
+
         this.lblErrorMessage.setText(errorMessage);
+    }
+
+    public JButton getBtnLogin() {
+
+        return btnLogin;
     }
 }

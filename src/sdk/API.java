@@ -48,23 +48,13 @@ public class API {
         return users;
     }
 
-    public String jCreate (Game game) {
+    public String createGame(Game game) {
+        String json = servCon.post(new Gson().toJson(game), "games/");
 
-        String jCreate = servCon.post(new Gson().toJson(game), "games/");
-        JSONParser parser = new JSONParser();
-        try{
-            Object object = parser.parse(jCreate);
-            JSONObject JO = (JSONObject) object;
-
-            jCreate = (String) JO.get("games");
-
-        }catch (ParseException e){
-            e.printStackTrace();
-        }
-
-        return jCreate;
+        return json;
     }
 }
+
 
 
 
