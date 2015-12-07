@@ -3,20 +3,23 @@ package GUI;
 import SDK.User;
 
 import java.awt.Font;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.Image;
 import javax.swing.*;
+import java.awt.Color;
 
 public class CreateGame extends JPanel {
     private JTextField txtGameName;
     private JTextField textFieldMovements;
     private JLabel lblCreategame;
     private JLabel lblEnterGameName;
-    private JLabel lblPleaseChooseAn;
     private JLabel lblPleaseEnterSnake;
     private JLabel lblwasd;
+    private JLabel lblPleaseChooseAn;
+    private JLabel lblErrorGameId;
+    private JLabel lblErrorNoMovements;
+    private JLabel lblErrorNoGame;
     private JButton btnCreateGame;
     private JButton btnBack;
     private JComboBox comboBox;
@@ -44,6 +47,24 @@ public class CreateGame extends JPanel {
         txtGameName.setBounds(48, 150, 192, 22);
         add(txtGameName);
         txtGameName.setColumns(10);
+
+        lblErrorGameId = new JLabel("Error: No opponent was selected");
+        lblErrorGameId.setFont(new Font("Lucida Grande", Font.BOLD, 13));
+        lblErrorGameId.setForeground(Color.RED);
+        lblErrorGameId.setBounds(286, 246, 218, 16);
+        add(lblErrorGameId);
+
+        lblErrorNoMovements = new JLabel("Error: No movements was entered");
+        lblErrorNoMovements.setForeground(Color.RED);
+        lblErrorNoMovements.setFont(new Font("Lucida Grande", Font.BOLD, 13));
+        lblErrorNoMovements.setBounds(286, 281, 237, 16);
+        add(lblErrorNoMovements);
+
+        lblErrorNoGame = new JLabel("Error: No game id was entered");
+        lblErrorNoGame.setForeground(Color.RED);
+        lblErrorNoGame.setFont(new Font("Lucida Grande", Font.BOLD, 13));
+        lblErrorNoGame.setBounds(286, 212, 237, 16);
+        add(lblErrorNoGame);
 
         btnCreateGame = new JButton("Create Game");
         btnCreateGame.setFont(new Font("Impact", Font.PLAIN, 13));

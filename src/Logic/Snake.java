@@ -6,10 +6,7 @@ import java.util.ArrayList;
 
 import GUI.JoinGame;
 import GUI.Screen;
-import SDK.API;
-import SDK.Game;
-import SDK.Gamer;
-import SDK.User;
+import SDK.*;
 
 import javax.swing.*;
 
@@ -19,8 +16,9 @@ public class Snake {
     private User currentUser;
     private API api;
     private ArrayList<User> users;
-    private ArrayList<Game> games;
+    private ArrayList<Game> pendingGames;
     private Game newGame;
+
 
 
     public Snake() {
@@ -53,7 +51,8 @@ public class Snake {
 
 
         //back knapper
-
+        screen.getCreategame().actionPerformedBack(
+                new CreateGameActionListenerBack());
         screen.getDeletegame().actionPerformedBack(
                 new DeleteGameActionListenerBack());
         screen.getJoingame().actionPerformedBack(
@@ -130,30 +129,32 @@ public class Snake {
     private class CreateGameActionListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             String actCom = e.getActionCommand();
-            if (actCom.equals("Login")) {
+            if (actCom.equals("Create Game")) {
+
                 Gamer host = new Gamer();
                 Gamer opponent = new Gamer();
+
                 newGame.setMapSize(750);
+                newGame.setHost(host);
+                newGame.setOpponent(opponent);
 
                 host.setId(currentUser.getId());
                 newGame.setName(screen.getCreategame().getTxtGameName());
 
                 for (User user : api.getUsers()) {
 
-                    System.out.println(user.getId());
                     if (user.getUsername().equals(screen.getCreategame().getUsernameFromCombo())) ;
-                    opponent.setId(user.getId());
+                        opponent.setId(user.getId());
+                        System.out.println(user.getId());
+                        newGame.setGameId(newGame.getGameId());
+
                 }
                 host.setControls(screen.getCreategame().getTextFieldMovements());
                 //ERRORHANDLING fra tidligere problem, hvor host og opponet ikke kunne sættes
-                newGame.setHost(host);
-                newGame.setOpponent(opponent);
 
                 JOptionPane.showMessageDialog(screen, "Your challenge has been sent, wait for the " +
                         "other player to accept your request and play his turn");
 
-                screen.getCreategame().actionPerformedBack(
-                        new CreateGameActionListenerBack());
             }
         }
     }
@@ -197,14 +198,19 @@ public class Snake {
 
                     newGame.setOpponent(opponent);
 
-                    for (Game game : games)
-                        if (screen.getJoingame().get
+                    for (Game game : pendingGames) {
+                        if (screen.getJoingame().getComboChallenge().equals(game.getName()));
+                        //
+                        }
+
                     }
+                newGame.getOpponent().setControls(screen.getJoingame().getTextFieldMovements());
+
 
 
                 }
             }
-        }
+
 
 
 

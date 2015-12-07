@@ -1,5 +1,8 @@
 package GUI;
 
+import SDK.Game;
+import SDK.User;
+
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,6 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
+import java.util.ArrayList;
 
 public class JoinGame extends JPanel {
     private JLabel lblStartGame;
@@ -17,7 +21,7 @@ public class JoinGame extends JPanel {
     private JButton btnStart;
     private JButton btnBack;
     private JTextField textFieldOppMovements;
-    private JComboBox comboBoxPending;
+    private JComboBox comboBoxChallenge;
 
     /**
      * Create the panel.
@@ -54,9 +58,9 @@ public class JoinGame extends JPanel {
         btnBack.setBounds(179, 319, 192, 37);
         add(btnBack);
 
-        comboBoxPending = new JComboBox();
-        comboBoxPending.setBounds(32, 159, 242, 81);
-        add(comboBoxPending);
+        comboBoxChallenge = new JComboBox();
+        comboBoxChallenge.setBounds(32, 159, 242, 81);
+        add(comboBoxChallenge);
 
         textFieldOppMovements = new JTextField();
         textFieldOppMovements.setColumns(10);
@@ -75,4 +79,23 @@ public class JoinGame extends JPanel {
     public void actionPerformedBack(ActionListener back) {
         btnBack.addActionListener(back);
     }
+    public void setComboBoxChallenge (ArrayList<Game> pendingGames) {
+
+        comboBoxChallenge.removeAllItems();
+
+        for (Game game : pendingGames) {
+            comboBoxChallenge.addItem(game.getName());
+        }
+    }
+
+    public String getComboChallenge() {
+
+        return (String) comboBoxChallenge.getSelectedItem();
+    }
+
+    public String getTextFieldMovements() {
+
+        return textFieldOppMovements.getText();
+    }
 }
+
