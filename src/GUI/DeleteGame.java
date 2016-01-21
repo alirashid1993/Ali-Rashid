@@ -65,6 +65,14 @@ public class DeleteGame extends JPanel {
         return btnDeleteGame;
     }
 
+    public JComboBox getComboDelete() {
+        return comboDelete;
+    }
+
+    public void deleteFromCombo(){
+        comboDelete.removeItemAt(comboDelete.getSelectedIndex());
+    }
+
     public void actionPerformedDeleteGame(ActionListener DeleteGame){
         btnDeleteGame.addActionListener(DeleteGame);
     }

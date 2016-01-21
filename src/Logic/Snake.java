@@ -104,25 +104,12 @@ public class Snake {
                     currentUser.setUsername(screen.getLogin().getUsername().getText());
                     currentUser.setPassword(screen.getLogin().getPassword().getText());
 
-                    String jLogin = null;
-
-                    jLogin = api.login(currentUser);
-                    users = api.getUsers();
-
-                    for (User user : users) {
-
-                        if (user.getUsername().equals(currentUser.getUsername())) {
-
-                            System.out.println(user.getId());
-                            currentUser = user;
-                        }
-                    }
-                    screen.getCreategame().setUsers(users);
-                    screen.show(screen.GAMEMENU);
-
                     String message = api.login(currentUser);
                     JOptionPane.showMessageDialog(screen, message);
-                    screen.getCreategame().clearTextFields();
+                    if (message.equals("Login succesful")) {
+                        screen.show(screen.GAMEMENU);
+                        screen.getCreategame().setUsers(api.getUsers());
+                    }
 
 
 
@@ -175,7 +162,14 @@ public class Snake {
                 else if (actCom.equals(screen.getDeletegame().getBtnDeleteGame())) {
                     Game game = new Game();
                     for (Game delete: deleteGame){
-                        if(delete.getName().equals(screen.getDeletegame()))
+                        if(delete.getName().equals(screen.getDeletegame().getComboDelete())){
+                            game = delete;
+                        }
+                    }
+                    String message = api.deleteGame(game.getGameId());
+                    JOptionPane.showMessageDialog(screen,message);
+                    if(message.equals("A game has been deleted")){
+                        screen.getDeletegame().deleteFromCombo();
                     }
 
                 }
