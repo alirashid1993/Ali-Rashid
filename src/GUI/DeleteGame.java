@@ -55,6 +55,9 @@ public class DeleteGame extends JPanel {
         add(btnBack);
 
     }
+    public JButton getBtnDeleteGame() {
+        return btnDeleteGame;
+    }
 
     public void actionPerformedDeleteGame(ActionListener DeleteGame){
         btnDeleteGame.addActionListener(DeleteGame);

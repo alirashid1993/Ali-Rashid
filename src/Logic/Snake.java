@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+
 import GUI.JoinGame;
 import GUI.Screen;
 import SDK.*;
@@ -117,7 +118,11 @@ public class Snake {
                     }
                     screen.getCreategame().setUsers(users);
                     screen.show(screen.GAMEMENU);
-                    JOptionPane.showMessageDialog(screen, "Welcome to Snake");
+
+                    String message = api.login(currentUser);
+                    JOptionPane.showMessageDialog(screen, message);
+                    screen.getCreategame().clearTextFields();
+
 
 
                 }
@@ -141,20 +146,20 @@ public class Snake {
                 host.setId(currentUser.getId());
                 newGame.setName(screen.getCreategame().getTxtGameName());
 
+
                 for (User user : api.getUsers()) {
 
                     if (user.getUsername().equals(screen.getCreategame().getUsernameFromCombo())) ;
                         opponent.setId(user.getId());
                         System.out.println(user.getId());
                         newGame.setGameId(newGame.getGameId());
-
                 }
                 host.setControls(screen.getCreategame().getTextFieldMovements());
                 //ERRORHANDLING fra tidligere problem, hvor host og opponet ikke kunne sættes
 
-                JOptionPane.showMessageDialog(screen, "Your challenge has been sent, wait for the " +
-                        "other player to accept your request and play his turn");
-
+                String message = api.createGame(newGame);
+                JOptionPane.showMessageDialog(screen, message);
+                screen.show(screen.GAMEMENU);
             }
         }
     }
@@ -164,6 +169,12 @@ public class Snake {
                 String actCom = arg0.getActionCommand();
                 if (actCom.equals("Delete Game")) {
                     screen.show(Screen.DELETEGAME);
+                }
+
+                else if (actCom.equals(screen.getDeletegame().getBtnDeleteGame())) {
+                    Game deleteGame = new Game();
+                    for (deleteGame game: )
+
                 }
             }
         }

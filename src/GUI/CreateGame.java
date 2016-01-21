@@ -1,7 +1,6 @@
 package GUI;
 
 import SDK.User;
-
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -23,6 +22,7 @@ public class CreateGame extends JPanel {
     private JButton btnCreateGame;
     private JButton btnBack;
     private JComboBox comboBox;
+
 
 
     /**
@@ -137,6 +137,21 @@ public class CreateGame extends JPanel {
 
         return textFieldMovements.getText();
     }
+
+    public JLabel getLblErrorGameId() {
+        return lblErrorGameId;
+    }
+
+    public JLabel getLblErrorNoMovements() {
+        return lblErrorNoMovements;
+    }
+    public void clearTextFields() {
+        textFieldMovements.setText("");
+        txtGameName.setText("");
+    }
+
+
+
 }
 
 

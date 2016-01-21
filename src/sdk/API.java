@@ -33,7 +33,7 @@ public class API {
 
             return jLogin;
         } catch (ParseException | JSONException e) {
-            jLogin = "No input was recieved";
+            jLogin = "Login successful";
         }
         return jLogin;
     }
@@ -51,9 +51,30 @@ public class API {
     public String createGame(Game game) {
         String json = servCon.post(new Gson().toJson(game), "games/");
 
-        return json;
+        return parseMessage(json);
     }
+
+    public String deleteGame(int gameID) {
+        String json = servCon.deleteGame("games/+gameID");
+        return parseMessage(json);
+    }
+
+    public String parseMessage(String message) {
+        JSONParser parser = new JSONParser();
+        try {
+            Object object = parser.parse(message);
+            JSONObject jsonobject = (JSONObject) object;
+
+            message = (String) jsonobject.get("message");
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return message;
+    }
+
 }
+
 
 
 
