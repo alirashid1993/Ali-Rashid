@@ -17,7 +17,7 @@ public class Game {
     private Date created;
     private int mapSize;
 
-    public Game(){
+    public Game() {
 
     }
 
@@ -41,7 +41,12 @@ public class Game {
         this.mapSize = mapSize;
     }
 
+    public String getName() {
+
+        return name;
+    }
     public void setName(String name) {
+
         this.name = name;
     }
 
@@ -96,6 +101,5 @@ public class Game {
         this.winner = winner;
     }
 
-    public void getName(String txtGameName) {
-    }
+
 } //end of class
