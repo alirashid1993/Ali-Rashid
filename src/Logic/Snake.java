@@ -18,6 +18,7 @@ public class Snake {
     private API api;
     private ArrayList<User> users;
     private ArrayList<Game> pendingGames;
+    private ArrayList<Game> deleteGame;
     private Game newGame;
 
 
@@ -172,8 +173,10 @@ public class Snake {
                 }
 
                 else if (actCom.equals(screen.getDeletegame().getBtnDeleteGame())) {
-                    Game deleteGame = new Game();
-                    for (deleteGame game: )
+                    Game game = new Game();
+                    for (Game delete: deleteGame){
+                        if(delete.getName().equals(screen.getDeletegame()))
+                    }
 
                 }
             }

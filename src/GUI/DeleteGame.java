@@ -8,6 +8,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.JComboBox;
 
 public class DeleteGame extends JPanel {
     private JTextField txtDeleteID;
@@ -15,6 +16,7 @@ public class DeleteGame extends JPanel {
     private JLabel lblEnterDeleteID;
     private JButton btnDeleteGame;
     private JButton btnBack;
+    private JComboBox comboDelete;
 
 
     /**
@@ -29,7 +31,7 @@ public class DeleteGame extends JPanel {
         lblDeleteGame.setBounds(127, 80, 295, 45);
         add(lblDeleteGame);
 
-        lblEnterDeleteID = new JLabel("Please enter the ID of a game you want to delete:");
+        lblEnterDeleteID = new JLabel("Please choose a game u want to delete:");
         lblEnterDeleteID.setFont(new Font("Impact", Font.PLAIN, 13));
         lblEnterDeleteID.setBounds(143, 137, 263, 16);
         add(lblEnterDeleteID);
@@ -53,6 +55,10 @@ public class DeleteGame extends JPanel {
         btnBack.setFont(new Font("Impact", Font.PLAIN, 13));
         btnBack.setBounds(179, 254, 192, 38);
         add(btnBack);
+
+        comboDelete = new JComboBox();
+        comboDelete.setBounds(179, 176, 192, 27);
+        add(comboDelete);
 
     }
     public JButton getBtnDeleteGame() {
