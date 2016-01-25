@@ -3,9 +3,6 @@ package Logic;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-
-
-import GUI.JoinGame;
 import GUI.Screen;
 import SDK.*;
 
@@ -76,6 +73,26 @@ public class Snake {
             return false;
         }
 
+
+    }
+
+    private class GameMenuActionListener implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+
+            String actCom = e.getActionCommand();
+            if (actCom.equals("CREATE GAME")) {
+                screen.show(Screen.CREATEGAME);
+            } else if (actCom.equals("DELETE GAME")) {
+                screen.show(Screen.DELETEGAME);
+            } else if (actCom.equals("JOIN GAME")) {
+                screen.show(Screen.JOINGAME);
+            } else if (actCom.equals("HIGHSCORES")) {
+                screen.show(Screen.LOADHIGHSCORE);
+            } else if (actCom.equals("SHOW RESULTS")) {
+                screen.show(Screen.SHOWRESULTS);
+            } else
+                screen.show(Screen.LOGIN);
+        }
     }
 
 
@@ -84,39 +101,29 @@ public class Snake {
             String actCom = e.getActionCommand();
             if (actCom.equals("Login")) {
 
-                String loginField = screen.getLogin().getUsername().getText();
-                String passwordField = screen.getLogin().getPassword().getText();
 
-                //rydder login felter
-                screen.getLogin().getUsername().setText("");
-                screen.getLogin().getPassword().setText("");
+                currentUser.setUsername(screen.getLogin().getUsername().getText());
+                currentUser.setPassword(screen.getLogin().getPassword().getText());
 
-                // Tjek om user/pass er udfyldt
-                if (isEmpty(loginField) || isEmpty(passwordField)) {
-                    // Error besked i vindue
-                    screen.getLogin().setErrorMessage(
-                            "Please type a user-ID and password!");
-                } else {
-                    screen.getLogin().setErrorMessage("Wrong username or password!");
-                    // Tjek login
+                String jLogin = null;
+                users = api.getUsers();
 
-
-                    currentUser.setUsername(screen.getLogin().getUsername().getText());
-                    currentUser.setPassword(screen.getLogin().getPassword().getText());
-
-                    String message = api.login(currentUser);
-                    JOptionPane.showMessageDialog(screen, message);
-                    if (message.equals("Login succesful")) {
-                        screen.show(screen.GAMEMENU);
-                        screen.getCreategame().setUsers(api.getUsers());
+                for (User user : users) {
+                    if (user.getUsername().equals(currentUser.getUsername())) {
+                        System.out.println(user.getId());
+                        currentUser = user;
                     }
-
-
-
+                }
+                String message = api.login(currentUser);
+                JOptionPane.showMessageDialog(screen, message);
+                if (message.equals("Login Succesful")) {
+                    screen.getCreategame().setUsers(api.getUsers());
+                    screen.show(screen.GAMEMENU);
                 }
             }
         }
     }
+
 
 
     private class CreateGameActionListener implements ActionListener {
@@ -134,13 +141,12 @@ public class Snake {
                 host.setId(currentUser.getId());
                 newGame.setName(screen.getCreategame().getTxtGameName());
 
-
                 for (User user : api.getUsers()) {
 
                     if (user.getUsername().equals(screen.getCreategame().getUsernameFromCombo())) ;
-                        opponent.setId(user.getId());
-                        System.out.println(user.getId());
-                        newGame.setGameId(newGame.getGameId());
+                    opponent.setId(user.getId());
+                    System.out.println(user.getId());
+                    newGame.setGameId(newGame.getGameId());
                 }
                 host.setControls(screen.getCreategame().getTextFieldMovements());
                 //ERRORHANDLING fra tidligere problem, hvor host og opponet ikke kunne sættes
@@ -152,124 +158,103 @@ public class Snake {
         }
     }
 
-        private class DeleteGameActionListener implements ActionListener {
-            public void actionPerformed(ActionEvent arg0) {
-                String actCom = arg0.getActionCommand();
-                if (actCom.equals("Delete Game")) {
-                    screen.show(Screen.DELETEGAME);
-                }
-
-                else if (actCom.equals(screen.getDeletegame().getBtnDeleteGame())) {
-                    Game game = new Game();
-                    for (Game delete: deleteGame){
-                        if(delete.getName().equals(screen.getDeletegame().getComboDelete())){
-                            game = delete;
-                        }
+    private class DeleteGameActionListener implements ActionListener {
+        public void actionPerformed(ActionEvent arg0) {
+            String actCom = arg0.getActionCommand();
+            if (actCom.equals("Delete Game")) {
+                screen.show(Screen.DELETEGAME);
+            }
+            else if (actCom.equals(screen.getDeletegame().getBtnDeleteGame())) {
+                Game game = new Game();
+                for (Game delete: deleteGame){
+                    if(delete.getName().equals(screen.getDeletegame().getComboDelete())){
+                        game = delete;
                     }
-                    String message = api.deleteGame(game.getGameId());
-                    JOptionPane.showMessageDialog(screen,message);
-                    if(message.equals("A game has been deleted")){
-                        screen.getDeletegame().deleteFromCombo();
-                    }
-
                 }
-            }
-        }
-
-        private class GameMenuActionListener implements ActionListener {
-            public void actionPerformed(ActionEvent e) {
-
-                String actCom = e.getActionCommand();
-                if (actCom.equals("CREATE GAME")) {
-                    screen.show(Screen.CREATEGAME);
-                } else if (actCom.equals("DELETE GAME")) {
-                    screen.show(Screen.DELETEGAME);
-                } else if (actCom.equals("JOIN GAME")) {
-                    screen.show(Screen.JOINGAME);
-                } else if (actCom.equals("HIGHSCORES")) {
-                    screen.show(Screen.LOADHIGHSCORE);
-                } else if (actCom.equals("SHOW RESULTS")) {
-                    screen.show(Screen.SHOWRESULTS);
-                } else
-                    screen.show(Screen.LOGIN);
-            }
-        }
-
-        public class JoinGameActionListener implements ActionListener {
-            public void actionPerformed(ActionEvent arg0) {
-                String actCom = arg0.getActionCommand();
-                if (actCom.equals("Join Game")) {
-                    String controls = screen.getCreategame().getTextFieldMovements();
-                    Gamer opponent = new Gamer();
-                    opponent.setId(currentUser.getId());
-                    opponent.setControls(controls);
-
-                    newGame.setOpponent(opponent);
-
-                    for (Game game : pendingGames) {
-                        if (screen.getJoingame().getComboChallenge().equals(game.getName()));
-                        //
-                        }
-
-                    }
-                newGame.getOpponent().setControls(screen.getJoingame().getTextFieldMovements());
-
-
-
+                String message = api.deleteGame(game.getGameId());
+                JOptionPane.showMessageDialog(screen,message);
+                if(message.equals("A game has been deleted")){
+                    screen.getDeletegame().deleteFromCombo();
                 }
-            }
-
-
-
-
-        private class LoadHighScoreActionListener implements ActionListener {
-            public void actionPerformed(ActionEvent arg0) {
-                String actCom = arg0.getActionCommand();
-                if (actCom.equals("Load Highscore")) {
-                    screen.show(Screen.LOADHIGHSCORE);
-                }
-            }
-        }
-
-        private class ShowResultsActionListener implements ActionListener {
-            public void actionPerformed(ActionEvent arg0) {
-                String actCom = arg0.getActionCommand();
-                if (actCom.equals("Show Results")) {
-                    screen.show(Screen.SHOWRESULTS);
-                }
-            }
-        }
-
-        private class CreateGameActionListenerBack implements ActionListener {
-            public void actionPerformed(ActionEvent e) {
-                screen.show(Screen.GAMEMENU);
-            }
-        }
-
-        private class DeleteGameActionListenerBack implements ActionListener {
-            public void actionPerformed(ActionEvent e) {
-                screen.show(Screen.GAMEMENU);
-            }
-        }
-
-        private class JoinGameActionListenerBack implements ActionListener {
-            public void actionPerformed(ActionEvent e) {
-                screen.show(Screen.GAMEMENU);
-            }
-        }
-
-        private class LoadHighScoreGameActionListenerBack implements ActionListener {
-            public void actionPerformed(ActionEvent e) {
-                screen.show(Screen.GAMEMENU);
-            }
-        }
-
-        private class ShowResultsActionListenerBack implements ActionListener {
-            public void actionPerformed(ActionEvent e) {
-                screen.show(Screen.GAMEMENU);
             }
         }
     }
+
+
+    public class JoinGameActionListener implements ActionListener {
+        public void actionPerformed(ActionEvent arg0) {
+            String actCom = arg0.getActionCommand();
+            if (actCom.equals("Join Game")) {
+                String controls = screen.getCreategame().getTextFieldMovements();
+                Gamer opponent = new Gamer();
+                opponent.setId(currentUser.getId());
+                opponent.setControls(controls);
+
+                newGame.setOpponent(opponent);
+
+                for (Game game : pendingGames) {
+                    if (screen.getJoingame().getComboChallenge().equals(game.getName()));
+                    //
+                }
+
+            }
+            newGame.getOpponent().setControls(screen.getJoingame().getTextFieldMovements());
+
+
+
+        }
+    }
+
+
+
+    private class LoadHighScoreActionListener implements ActionListener {
+        public void actionPerformed(ActionEvent arg0) {
+            String actCom = arg0.getActionCommand();
+            if (actCom.equals("Load Highscore")) {
+                screen.show(Screen.LOADHIGHSCORE);
+            }
+        }
+    }
+
+    private class ShowResultsActionListener implements ActionListener {
+        public void actionPerformed(ActionEvent arg0) {
+            String actCom = arg0.getActionCommand();
+            if (actCom.equals("Show Results")) {
+                screen.show(Screen.SHOWRESULTS);
+            }
+        }
+    }
+
+    private class CreateGameActionListenerBack implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            screen.show(Screen.GAMEMENU);
+        }
+    }
+
+    private class DeleteGameActionListenerBack implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            screen.show(Screen.GAMEMENU);
+        }
+    }
+
+    private class JoinGameActionListenerBack implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            screen.show(Screen.GAMEMENU);
+        }
+    }
+
+    private class LoadHighScoreGameActionListenerBack implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            screen.show(Screen.GAMEMENU);
+        }
+    }
+
+    private class ShowResultsActionListenerBack implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            screen.show(Screen.GAMEMENU);
+        }
+    }
+}
 
 
 

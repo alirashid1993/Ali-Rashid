@@ -67,9 +67,9 @@ public class JoinGame extends JPanel {
         textFieldOppMovements.setBounds(326, 186, 192, 45);
         add(textFieldOppMovements);
 
-        lblEnterSnakeMovements = new JLabel("Enter snake here:\n");
+        lblEnterSnakeMovements = new JLabel("Enter snake movements here:\n");
         lblEnterSnakeMovements.setFont(new Font("Impact", Font.PLAIN, 13));
-        lblEnterSnakeMovements.setBounds(379, 159, 96, 16);
+        lblEnterSnakeMovements.setBounds(343, 159, 162, 16);
         add(lblEnterSnakeMovements);
 
     }

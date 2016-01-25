@@ -24,6 +24,7 @@ public class API {
 
         String jLogin = servCon.post(new Gson().toJson(user), "login");
         JSONParser parser = new JSONParser();
+
         try {
             Object object = parser.parse(jLogin);
             JSONObject JO = (JSONObject) object;
@@ -31,11 +32,11 @@ public class API {
             if (JO.get("userid") != null)
                 user.setId((int) (long) JO.get("userid"));
 
-            return jLogin;
+
         } catch (ParseException | JSONException e) {
-            jLogin = "Login successful";
+            message = "Login Succesful";
         }
-        return jLogin;
+        return message;
     }
 
     public ArrayList<User> getUsers() {

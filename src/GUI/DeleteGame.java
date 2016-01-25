@@ -33,13 +33,8 @@ public class DeleteGame extends JPanel {
 
         lblEnterDeleteID = new JLabel("Please choose a game u want to delete:");
         lblEnterDeleteID.setFont(new Font("Impact", Font.PLAIN, 13));
-        lblEnterDeleteID.setBounds(143, 137, 263, 16);
+        lblEnterDeleteID.setBounds(165, 137, 219, 16);
         add(lblEnterDeleteID);
-
-        txtDeleteID = new JTextField();
-        txtDeleteID.setColumns(10);
-        txtDeleteID.setBounds(179, 165, 192, 38);
-        add(txtDeleteID);
 
         btnDeleteGame = new JButton("Delete Game");
         btnDeleteGame.addActionListener(new ActionListener() {
